@@ -36,11 +36,12 @@ const signup = async (req, res) => {
     res.cookie("userId", data[0].id, {
       maxAge: 24 * 60 * 60 * 1000,
       secure: environment === "production",
-      sameSite: "lax",
     });
 
     return res.status(201).json({ data: data[0] });
   } catch (err) {
+
+    console.log(err)
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }; // POST /signup ^
@@ -73,11 +74,12 @@ const login = async (req, res) => {
     res.cookie("userId", checkUser.id, {
       maxAge: 24 * 60 * 60 * 1000,
       secure: environment === "production",
-      sameSite: "lax",
     });
 
     return res.status(200).json({ message: `Successfully logged in!` });
   } catch (err) {
+
+    console.log(err)
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }; // POST /login ^
@@ -98,12 +100,12 @@ const getInventory = async (req, res) => {
   }
 
   try {
-    const data = await knex("items")
-      .select("*")
-      .where("user_id", userId);
+    const data = await knex("items").select("*").where("user_id", userId);
 
     return res.status(200).json({ data });
   } catch (err) {
+
+    console.log(err)
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }; // GET /inventory/:userId ^

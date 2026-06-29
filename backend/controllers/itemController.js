@@ -13,6 +13,7 @@ const viewAllItems = async (req, res) => {
     );
     return res.status(200).json({ data });
   } catch (err) {
+
     console.log(err)
     return res.status(500).json({ error: "Internal Server Error" });
   }
@@ -37,6 +38,8 @@ const viewSingleItem = async (req, res) => {
 
     return res.status(200).json({ data });
   } catch (err) {
+
+    console.log(err)
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }; // GET /items/:itemId ^
@@ -62,6 +65,8 @@ const createNewItem = async (req, res) => {
       .returning("*");
     return res.status(201).json({ data: data[0] });
   } catch (err) {
+
+    console.log(err)
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }; // POST /items/new ^
