@@ -35,9 +35,6 @@ const signup = async (req, res) => {
 
     res.cookie("userId", data[0].id, {
       maxAge: 24 * 60 * 60 * 1000,
-      secure: false,
-      httpOnly: false, // due to how the frontend reads the cookie, i need this set to false
-      sameSite: "lax",
     });
 
     return res.status(201).json({ data: data[0] });
@@ -74,9 +71,6 @@ const login = async (req, res) => {
   try {
     res.cookie("userId", checkUser.id, {
       maxAge: 24 * 60 * 60 * 1000,
-      secure: false,
-      httpOnly: false, // due to how the frontend reads the cookie, i need this set to false
-      sameSite: "lax",
     });
 
     return res.status(200).json({ message: `Successfully logged in!` });
