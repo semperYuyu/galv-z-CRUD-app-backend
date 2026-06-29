@@ -35,13 +35,14 @@ const signup = async (req, res) => {
 
     res.cookie("userId", data[0].id, {
       maxAge: 24 * 60 * 60 * 1000,
-      secure: environment === "production",
+      secure: false,
+      httpOnly: false, // due to how the frontend reads the cookie, i need this set to false
+      sameSite: "lax",
     });
 
     return res.status(201).json({ data: data[0] });
   } catch (err) {
-
-    console.log(err)
+    console.log(err);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }; // POST /signup ^
@@ -73,13 +74,14 @@ const login = async (req, res) => {
   try {
     res.cookie("userId", checkUser.id, {
       maxAge: 24 * 60 * 60 * 1000,
-      secure: environment === "production",
+      secure: false,
+      httpOnly: false, // due to how the frontend reads the cookie, i need this set to false
+      sameSite: "lax",
     });
 
     return res.status(200).json({ message: `Successfully logged in!` });
   } catch (err) {
-
-    console.log(err)
+    console.log(err);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }; // POST /login ^
@@ -104,8 +106,7 @@ const getInventory = async (req, res) => {
 
     return res.status(200).json({ data });
   } catch (err) {
-
-    console.log(err)
+    console.log(err);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }; // GET /inventory/:userId ^
