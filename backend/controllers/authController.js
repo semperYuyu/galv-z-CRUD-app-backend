@@ -81,7 +81,9 @@ const login = async (req, res) => {
       partitioned: true,
     });
 
-    return res.status(200).json({ message: `Successfully logged in!` });
+    return res
+      .status(200)
+      .json({ message: `Successfully logged in!`, id: checkUser.id });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal Server Error" });
