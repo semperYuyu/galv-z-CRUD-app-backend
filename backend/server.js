@@ -1,3 +1,4 @@
+console.log("is this working !!!");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -5,7 +6,10 @@ require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT;
-const origin = process.env.CLIENT_ORIGIN !== "[N/A]" ? process.env.CLIENT_ORIGIN : process.env.TEST_CLIENT_ORIGIN;
+const origin =
+  process.env.CLIENT_ORIGIN != "[N/A]"
+    ? process.env.CLIENT_ORIGIN
+    : process.env.TEST_CLIENT_ORIGIN;
 
 const authRoutes = require("./routes/authRoutes");
 const itemRoutes = require("./routes/itemRoutes");
