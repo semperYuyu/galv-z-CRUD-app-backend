@@ -38,6 +38,7 @@ const signup = async (req, res) => {
       secure: true,
       sameSite: "none",
       httpOnly: false,
+      partitioned: true,
     });
 
     return res.status(201).json({ data: data[0] });
@@ -77,6 +78,7 @@ const login = async (req, res) => {
       secure: true,
       sameSite: "none",
       httpOnly: false,
+      partitioned: true,
     });
 
     return res.status(200).json({ message: `Successfully logged in!` });
