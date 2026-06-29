@@ -13,7 +13,8 @@ const viewAllItems = async (req, res) => {
     );
     return res.status(200).json({ data });
   } catch (err) {
-    res.status(500).json({ error: "Internal Server Error" });
+    console.log(err)
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 }; // GET /items ^
 
